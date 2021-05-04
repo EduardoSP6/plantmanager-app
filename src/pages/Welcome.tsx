@@ -9,7 +9,7 @@ import fonts from '../styles/fonts';
 
 export function Welcome() {
 
-    const navigation = useNavigation();
+    const navigation = useNavigation<any>();
 
     function handleStart() {
         navigation.navigate('UserIdentification');

@@ -22,7 +22,7 @@ export function UserIdentification() {
     const [isFilled, setIsFilled] = useState(false);
     const [name, setName] = useState<string>();
 
-    const navigation = useNavigation();
+    const navigation = useNavigation<any>();
 
     function handleSubmit() {
         navigation.navigate("Confirmation");
