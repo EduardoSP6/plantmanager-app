@@ -1,4 +1,5 @@
 import React from 'react';
+import { Platform } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import { PlantSelect } from '../pages/PlantSelect';
@@ -18,7 +19,7 @@ const AuthRoutes = () => {
                 inactiveTintColor: colors.heading,
                 labelPosition: 'beside-icon',
                 style: {
-                    paddingVertical: 20,
+                    paddingVertical: Platform.OS == "ios" ? 20 : 0,
                     height: 88
                 }
             }}
@@ -28,7 +29,7 @@ const AuthRoutes = () => {
                 name="Nova Planta"
                 component={PlantSelect}
                 options={{
-                    tabBarIcon: (({ focused, size, color }) => (
+                    tabBarIcon: (({ size, color }) => (
                         <MaterialIcons
                             name="add-circle-outline"
                             size={size}
@@ -42,7 +43,7 @@ const AuthRoutes = () => {
                 name="Minhas Plantas"
                 component={MyPlants}
                 options={{
-                    tabBarIcon: (({ focused, size, color }) => (
+                    tabBarIcon: (({ size, color }) => (
                         <MaterialIcons
                             name="format-list-bulleted"
                             size={size}

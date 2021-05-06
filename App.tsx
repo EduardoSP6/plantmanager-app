@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import AppLoadging from 'expo-app-loading';
+import * as Notifications from 'expo-notifications';
 
 import Routes from './src/routes';
+import { PlantProps } from './src/libs/storage';
 
 import {
   useFonts,
@@ -11,10 +13,23 @@ import {
 
 
 export default function App() {
+  
   const [ fontsLoaded ] = useFonts({
     Jost_400Regular,
     Jost_600SemiBold
   });
+
+  // Listener de notificacoes
+  useEffect(() => {
+    const subscription = Notifications.addNotificationReceivedListener(
+      async notification => {
+        const data = notification.request.content.data as PlantProps;
+        console.log(data);
+      }
+    )
+
+    return () => subscription.remove();
+  },[]);
 
   if (!fontsLoaded) {
     return <AppLoadging />
